@@ -6,7 +6,7 @@ const j = body => ({ headers: { 'Content-Type': 'application/json' }, body: JSON
 /* ---- Classes ---- */
 export const getClasses = () => fetch(`${BASE}/classes`).then(r => r.json());
 export const addClass = (b) => fetch(`${BASE}/classes`, { method: 'POST', ...j(b) });
-export const updateClass = (id, b) => 
+export const updateClass = (id, b) =>
   fetch(`${BASE}/classes/${id}`, { method: 'PUT', ...j(b) })
     .then(async response => {
       if (!response.ok) {
@@ -36,12 +36,12 @@ export const deleteTrainer = (id) => fetch(`${BASE}/trainers/${id}`, { method: '
 export const getMembers = () => fetch(`${BASE}/gym-members`).then(r => r.json());
 export const addMember = (b) => fetch(`${BASE}/gym-members`, { method: 'POST', ...j(b) });
 export const updateMember = (id, b) => fetch(`${BASE}/gym-members/${id}`, { method: 'PUT', ...j(b) });
-export const deleteMember = (id) => fetch(`${BASE}/gym-member/${id}`, { method: 'DELETE' });
+export const deleteMember = (id) => fetch(`${BASE}/gym-members/${id}`, { method: 'DELETE' });
 
 
 /* ---- Bookings ---- */
 export const getBookings = () => fetch(`${BASE}/bookings`).then(r => r.json());
-export const addBooking = (b) => 
+export const addBooking = (b) =>
   fetch(`${BASE}/bookings`, { method: 'POST', ...j(b) })
     .then(async response => {
       if (!response.ok) {
@@ -58,10 +58,10 @@ export const login = ({ username, password }) =>
     // j() helper'ı hem headers'ı hem body'yi döndürüyor
     ...j({ username, password })
   })
-  .then(res => {
-    if (!res.ok) throw new Error('Login failed');
-    return res.json();
-  });
+    .then(res => {
+      if (!res.ok) throw new Error('Login failed');
+      return res.json();
+    });
 
 /* ---- Dashboard Statistics ---- */
 export const getTrainerStats = () => fetch(`${BASE}/stats/trainers`).then(r => r.json());
